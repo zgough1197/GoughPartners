@@ -1,10 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <b-container>
+      <b-navbar toggleable="lg" type="dark" variant="dark">
+        <b-navbar-brand>
+          <div id="logo">
+            stratatas
+          </div>
+        </b-navbar-brand>
+      </b-navbar>
+    </b-container>
+    <b-container>
+      <div id="content">
+        <router-view />
+      </div>
+    </b-container>
   </div>
 </template>
 
@@ -12,21 +21,21 @@
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  background-image: url("/resources/bg.png");
 }
 
-#nav {
-  padding: 30px;
+#logo {
+  font-size: 3em;
+  font-family: serif;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+#content {
+  margin-top: 12px;
+  background: #fff;
+  padding: 12px;
 }
 </style>
+
+<script>
+
+</script>
