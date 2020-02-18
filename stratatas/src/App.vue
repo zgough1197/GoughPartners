@@ -1,33 +1,35 @@
 <template>
   <div id="app" v-bind:style="{ 'min-height': windowHeight + 'px' }">
-    <b-container fluid id="navbar">
+    <b-container fluid id="navbarContainer">
+      <div id="logo">
+        Stratatas
+      </div>
       <b-navbar
-        toggleable="lg"
+        toggleable="md"
         type="dark"
         variant="dark"
-        style="margin: 0; padding: 0 24px 0 24px;"
       >
         <b-container>
-          <b-navbar-brand id="logo">
-            Stratatas
-          </b-navbar-brand>
+          <b-navbar-toggle target="collapse" />
 
-          <b-navbar-toggle
-            target="large"
-            style="right: 0px; position: absolute;"
-          ></b-navbar-toggle>
-
-          <b-collapse id="large" is-nav>
+          <b-collapse id="collapse" is-nav>
             <b-navbar-nav>
               <b-nav-item to="/">Home</b-nav-item>
-              <b-nav-item to="/about">About</b-nav-item>
-              <b-nav-item to="/qupte">Get a Quote</b-nav-item>
+              <b-nav-item to="/about">About Us</b-nav-item>
+            </b-navbar-nav>
+
+            <!-- Right aligned nav items -->
+            <b-navbar-nav class="ml-auto">
+              <b-nav-form>
+                <b-button to="/quote" variant="warning">Get a Quote</b-button>
+                <b-button to="/" variant="primary">Owner's Portal</b-button>
+              </b-nav-form>
             </b-navbar-nav>
           </b-collapse>
         </b-container>
       </b-navbar>
     </b-container>
-    <b-container>
+    <b-container fluid style="padding:0">
       <div id="content">
         <router-view />
       </div>
@@ -39,57 +41,52 @@
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-image: url("/resources/bg.png");
   margin: 0;
   padding: 0;
 }
 
 #logo {
-  font-size: 3em;
+  background-color: #007bff;
+  color: white;
+  font-size: 4em;
   font-family: serif;
+  padding: 0;
   width: 100%;
   text-align: center;
 }
 
 #content {
-  margin-top: 32px;
   background: #fff;
-  padding: 24px;
-  box-shadow: 0px 0px 48px 0px #777;
 }
 
-#navbar {
+#navbarContainer {
   margin: 0;
   padding: 0;
+}
+
+.large {
+  padding-bottom: 0;
 }
 </style>
 
 <script>
 export default {
-  el: "#app",
   data() {
     return {
       windowHeight: window.innerHeight,
-      lastScrollPos: 0,
-      scrollingDown: false
+      windowWidth: window.innerWidth,
     };
   },
-  mounted: function() {
+  created() {
     window.addEventListener("resize", this.onResize);
-    window.addEventListener("scroll", this.scroll);
   },
-  destroyed: function() {
+  destroyed() {
     window.removeEventListener("resize", this.onResize);
-    window.removeEventListener("scroll", this.onScroll);
   },
   methods: {
-    onResize: function() {
+    onResize() {
       this.windowHeight = window.innerHeight;
-    },
-    onScroll: function() {
-      this.scrollingDown = window.scrollY > this.lastScrollPos;
-      this.lastScrollPos = window.scrollY;
-      console.log(this.scrollingDown);
+      this.windowWidth = window.innerWidth;
     }
   }
 };
