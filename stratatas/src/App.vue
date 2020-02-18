@@ -20,9 +20,9 @@
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-              <b-nav-form>
+              <b-nav-form id="navButtons">
                 <b-button to="/quote" variant="warning">Get a Quote</b-button>
-                <b-button to="/" variant="primary">Owner's Portal</b-button>
+                <b-button href="https://www.lookatmystrata.com.au/login/999562" variant="primary">Owner's Portal</b-button>
               </b-nav-form>
             </b-navbar-nav>
           </b-collapse>
@@ -53,6 +53,10 @@
   padding: 0;
   width: 100%;
   text-align: center;
+}
+
+#navButtons * {
+  margin: 0 3px 0 3px; 
 }
 
 #content {
