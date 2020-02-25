@@ -1,12 +1,25 @@
 <template>
-  <div id="app" v-bind:style="{ 'min-height': windowHeight + 'px' }">
+  <div id="app" v-bind:style="{ 'min-height': windowHeight + 'px', 'width': windowWidth }">
     <b-container fluid id="navbarContainer">
-      <div id="logosTitle" class="bg-secondary text-white">
-        The Gough Group
-      </div>
+      <b-navbar toggleable="sm" type="dark" variant="secondary">
+        <b-container>
+          <b-navbar-brand id="logosTitle" class="bg-secondary text-white">
+            The Gough Group
+          </b-navbar-brand>
+
+          <b-navbar-toggle target="collapseOver"></b-navbar-toggle>
+
+          <b-collapse id="collapseOver" is-nav v-if="isSm">
+            <b-navbar-nav>
+              <b-nav-item to="/">Home</b-nav-item>
+              <b-nav-item to="/about">About Us</b-nav-item>
+            </b-navbar-nav>
+          </b-collapse>
+        </b-container>
+      </b-navbar>
       <b-container id="logos">
         <b-row style="align-items: end;">
-          <b-col md="8" sm="12">
+          <b-col lg="8" md="12">
             <router-link to="/" style="text-decoration:none;color:black">
               <img src="/resources/stratatas.jpg" height="150" />
               <div class="subtitle">
@@ -14,11 +27,11 @@
               </div>
             </router-link>
           </b-col>
-          <b-col md="4" sm="12">
+          <b-col lg="4" md="12">
+            <hr v-if="isLg" />
             <div class="subtitle" style="font-size:0.6em">
               Other Locations
             </div>
-            <hr/>
             <b-row>
               <b-col cols="6">
                 <a
@@ -46,11 +59,9 @@
           </b-col>
         </b-row>
       </b-container>
-      <b-navbar toggleable="md" type="dark" variant="secondary">
+      <b-navbar toggleable="sm" type="dark" variant="secondary">
         <b-container>
-          <b-navbar-toggle target="collapse" />
-
-          <b-collapse id="collapse" is-nav>
+          <b-collapse id="collapseUnder" is-nav>
             <b-navbar-nav>
               <b-nav-item to="/">Home</b-nav-item>
               <b-nav-item to="/about">About Us</b-nav-item>
@@ -83,8 +94,8 @@
 <style lang="scss">
 @import "assets/customBootstrap.scss";
 
-@import '~bootstrap/scss/bootstrap.scss';
-@import '~bootstrap-vue/src/index.scss';
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap-vue/src/index.scss";
 </style>
 
 <style>
@@ -99,6 +110,7 @@
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 #logosTitle {
@@ -149,6 +161,14 @@ export default {
       windowHeight: window.innerHeight,
       windowWidth: window.innerWidth
     };
+  },
+  computed: {
+    isSm: function() {
+      return this.windowWidth <= 576;
+    },
+    isLg: function() {
+      return this.windowWidth <= 992;
+    }
   },
   created() {
     window.addEventListener("resize", this.onResize);
