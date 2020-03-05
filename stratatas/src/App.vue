@@ -1,5 +1,8 @@
 <template>
-  <div id="app" v-bind:style="{ 'min-height': windowHeight + 'px', 'width': windowWidth }">
+  <div
+    id="app"
+    v-bind:style="{ 'min-height': windowHeight + 'px', width: windowWidth }"
+  >
     <b-container fluid id="navbarContainer">
       <b-navbar toggleable="sm" type="dark" variant="secondary">
         <b-container>
@@ -13,12 +16,14 @@
             <b-navbar-nav>
               <b-nav-item to="/">Home</b-nav-item>
               <b-nav-item to="/about">About Us</b-nav-item>
+              <b-nav-item to="/services">Our Services</b-nav-item>
+              <b-nav-item to="/resources">Resources</b-nav-item>
             </b-navbar-nav>
           </b-collapse>
         </b-container>
       </b-navbar>
       <b-container id="logos">
-        <b-row style="align-items: end;">
+        <b-row style="align-items: center;">
           <b-col lg="8" md="12">
             <router-link to="/" style="text-decoration:none;color:black">
               <img src="/resources/stratatas.jpg" height="150" />
@@ -65,6 +70,8 @@
             <b-navbar-nav>
               <b-nav-item to="/">Home</b-nav-item>
               <b-nav-item to="/about">About Us</b-nav-item>
+              <b-nav-item to="/services">Our Services</b-nav-item>
+              <b-nav-item to="/resources">Resources</b-nav-item>
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -88,6 +95,11 @@
         <router-view />
       </div>
     </b-container>
+    <div id="footer" class="text-light bg-secondary">
+      <b-container>
+        Test
+      </b-container>
+    </div>
   </div>
 </template>
 
@@ -111,6 +123,7 @@
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  position: relative;
 }
 
 #logosTitle {
@@ -147,6 +160,12 @@
 #navbarContainer {
   margin: 0;
   padding: 0;
+}
+
+#footer {
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
 }
 
 .large {

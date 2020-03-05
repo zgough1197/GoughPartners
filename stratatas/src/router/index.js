@@ -3,24 +3,42 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Quote from "../views/Quote.vue";
+import Services from "../views/Services.vue";
+import Resources from "../views/Resources.vue";
+import PageNotFound from "../views/PageNotFound.vue"
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
+    name: "Home",
     component: Home
   },
   {
     path: "/about",
-    name: "about",
+    name: "About",
     component: About
   },
   {
     path: "/quote",
-    name: "quote",
+    name: "Get a Quote",
     component: Quote
+  },
+  {
+    path: "/services",
+    name: "Our Services",
+    component: Services
+  },
+  {
+    path: "/resources",
+    name: "Resources",
+    component: Resources
+  },
+  {
+    path: "*",
+    name: "404",
+    component: PageNotFound
   }
 ];
 
